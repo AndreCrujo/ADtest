@@ -9,7 +9,12 @@ RUN \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  apt-get install software-properties-common && \
+  apt-add-repository ppa:chris-lea/node.js && \
+  sudo apt-get update && \
+  apt-get install nodejs=0.10.29-1chl1~saucy1 && \
+  echo -e '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
 
 # Add files.
 #ADD root/.bashrc /root/.bashrc
@@ -20,25 +25,25 @@ RUN \
 ENV HOME /root
 
 # Install dependencies
-RUN \
-	sudo apt-get install g++ make && \
-	vim ~/.npmrc && \
-	root = ~/.local/lib/node_modules && \
-	binroot = ~/.local/bin && \
-	manroot = ~/.local/share/man && \
-	mkdir ~/.local && \
-	wget https://github.com/joyent/node/archive/v0.10.29.tar.gz ~/ && \	
-	tar -xzvf ~/v0.10.29.tar.gz && \
-	cd ~/node-0.10.29 && \
-	./configure --prefix=~/.local && \
-	make && \
-	make install && \
-	ln -s ~/.local/lib/node_modules ~/.node_modules && \
-	export PATH=$HOME/.local/bin:$PATH && \
-	node -v && \
-	npm -v && \
-	rm -R /home/nodejs-0.10.x/node-0.10.29 && \
-	rm /home/nodejs-0.10.x/v0.10.29.tar.gz
+#RUN \
+#	sudo apt-get install g++ make && \
+#	vim ~/.npmrc && \
+#	root = ~/.local/lib/node_modules && \
+#	binroot = ~/.local/bin && \
+#	manroot = ~/.local/share/man && \
+#	mkdir ~/.local && \
+#	wget https://github.com/joyent/node/archive/v0.10.29.tar.gz ~/ && \	
+#	tar -xzvf ~/v0.10.29.tar.gz && \
+#	cd ~/node-0.10.29 && \
+#	./configure --prefix=~/.local && \
+#	make && \
+#	make install && \
+#	ln -s ~/.local/lib/node_modules ~/.node_modules && \
+#	export PATH=$HOME/.local/bin:$PATH && \
+#	node -v && \
+#	npm -v && \
+#	rm -R /home/nodejs-0.10.x/node-0.10.29 && \
+#	rm /home/nodejs-0.10.x/v0.10.29.tar.gz
 	
 # Install Node.js
 #RUN \
