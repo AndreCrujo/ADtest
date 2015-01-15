@@ -6,7 +6,8 @@ MAINTAINER andre@tradingeconomics.com
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN \
-	apt-get install -y build-essential && \
+	#apt-get update && \
+	#apt-get install -y build-essential && \
 	sudo docker run -i -t ubuntu /bin/bash
 
 
