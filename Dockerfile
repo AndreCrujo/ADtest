@@ -21,23 +21,23 @@ ENV HOME /root
 
 # Install dependencies
 RUN \
-	sudo apt-get install g++ make
-	vim ~/.npmrc
-	root = ~/.local/lib/node_modules
-	binroot = ~/.local/bin
-	manroot = ~/.local/share/man
-	mkdir ~/.local
-	wget https://github.com/joyent/node/archive/v0.10.29.tar.gz ~/	
-	tar -xzvf ~/v0.10.29.tar.gz
-	cd ~/node-0.10.29
-	./configure --prefix=~/.local
-	make
-	make install	
-	ln -s ~/.local/lib/node_modules ~/.node_modules	
-	export PATH=$HOME/.local/bin:$PATH
-	node -v
-	npm -v
-	rm -R /home/nodejs-0.10.x/node-0.10.29
+	sudo apt-get install g++ make && \
+	vim ~/.npmrc && \
+	root = ~/.local/lib/node_modules && \
+	binroot = ~/.local/bin && \
+	manroot = ~/.local/share/man && \
+	mkdir ~/.local && \
+	wget https://github.com/joyent/node/archive/v0.10.29.tar.gz ~/ && \	
+	tar -xzvf ~/v0.10.29.tar.gz && \
+	cd ~/node-0.10.29 && \
+	./configure --prefix=~/.local && \
+	make && \
+	make install && \
+	ln -s ~/.local/lib/node_modules ~/.node_modules && \
+	export PATH=$HOME/.local/bin:$PATH && \
+	node -v && \
+	npm -v && \
+	rm -R /home/nodejs-0.10.x/node-0.10.29 && \
 	rm /home/nodejs-0.10.x/v0.10.29.tar.gz
 	
 # Install Node.js
